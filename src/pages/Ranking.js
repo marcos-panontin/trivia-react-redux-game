@@ -9,4 +9,11 @@ class Ranking extends Component {
   }
 }
 
+const mapStateToProps = ({ player }) => ({
+  score: player.score,
+  assertions: player.assertions,
+  name: player.name,
+  email: player.gravatarEmail,
+});
+
 export default connect(mapStateToProps)(Ranking);
