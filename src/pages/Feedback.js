@@ -5,7 +5,8 @@ import { generateGravatarURL } from '../services/gravatarFunctions';
 
 class Feedback extends Component {
   render() {
-    const { score, name, email } = this.props;
+    const { score, name, email, assertions } = this.props;
+    const minimumAssertions = 3;
     return (
       <>
 
@@ -16,7 +17,14 @@ class Feedback extends Component {
           src={ generateGravatarURL(email) }
         />
         <p data-testid="header-player-name">{name}</p>
-        <p data-testid="header-score">{ score }</p>
+        <p data-testid="header-score">{score}</p>
+
+        <p
+          data-testid="feedback-text"
+        >
+          {assertions < minimumAssertions ? 'Could be better...' : 'Well Done!'}
+
+        </p>
 
       </>
     );
@@ -25,12 +33,14 @@ class Feedback extends Component {
 
 Feedback.propTypes = {
   score: PropTypes.number.isRequired,
+  assertions: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (globalState) => ({
   score: globalState.score,
+  assertions: globalState.assertions,
   name: globalState.name,
   email: globalState.email,
 });
