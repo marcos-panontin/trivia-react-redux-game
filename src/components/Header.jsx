@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { generateGravatarURL } from '../services/gravatarFunctions';
 
 class Header extends Component {
   render() {
-    const { name, score } = this.props;
+    const { name, score, gravatarEmail } = this.props;
     return (
       <div>
         <img
-          src="https://www.gravatar.com/avatar/HASH"
+          src={ generateGravatarURL(gravatarEmail) }
           alt="avatar"
           data-testid="header-profile-picture"
         />
@@ -21,11 +22,13 @@ class Header extends Component {
 const mapStateToProps = (state) => ({
   name: state.player.name,
   score: state.player.score,
+  email: state.player.gravatarEmail,
 });
 
 Header.propTypes = {
   name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
+  gravatarEmail: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(Header);
