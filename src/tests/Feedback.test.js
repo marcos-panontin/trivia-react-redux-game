@@ -53,6 +53,21 @@ describe('Testes do arquivo Feedback.js', () => {
     expect(history.location.pathname).toBe('/ranking');
 
   });
-
+  it('Check if paragraph it has been displayed', async () => {
+    const { history } = renderWithRouterAndRedux(<App />);
+    act(() => {
+        history.push('/feedback');
+    })
+    const textFeedback = screen.getByTestId('feedback-text');
+    expect(textFeedback).toBeInTheDocument();
+  });
+  it('Check if the text is correct', async () => {
+    const { history } = renderWithRouterAndRedux(<App />);
+    act(() => {
+        history.push('/feedback');
+    })
+    const textFeedback = screen.getByTestId('feedback-text');
+    expect(textFeedback.innerHTML).toBe("Could be better...");
+  });
 
 });
