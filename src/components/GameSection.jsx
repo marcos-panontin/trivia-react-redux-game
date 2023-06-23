@@ -38,7 +38,7 @@ class GameSection extends Component {
                 <button
                   // style={ buttonClicked ? { border: '3px solid red ' } : { border: '1px solid black ' } }
                   className={ buttonClicked ? 'red' : null }
-                  style={ { order: index } }
+                  style={ { order: incorrectAnswers.indexOf(answer) } }
                   key={ index }
                   data-testid={ `wrong-answer-${incorrectAnswers.indexOf(answer)}` }
                   type="button"
