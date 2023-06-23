@@ -9,7 +9,7 @@ class Login extends Component {
     disabled: true,
   };
 
-  handleClick = async (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     const { token } = await getToken();
     localStorage.setItem('token', token);
@@ -36,7 +36,9 @@ class Login extends Component {
     return (
       <>
         <h1>Login</h1>
-        <form>
+        <form
+          onSubmit={ this.handleSubmit }
+        >
           <input
             name="username"
             value={ username }
@@ -55,12 +57,14 @@ class Login extends Component {
           />
           <input
             type="submit"
-            onClick={ this.handleClick }
             disabled={ disabled }
             value="Play"
             data-testid="btn-play"
           />
         </form>
+        <button data-testeid="btn-settings">
+          Configurações
+        </button>
       </>
     );
   }
