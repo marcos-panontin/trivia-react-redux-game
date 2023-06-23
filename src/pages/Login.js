@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { getToken } from '../services/api';
 import { saveEmail, saveName } from '../redux/actions';
 
@@ -82,4 +83,4 @@ Login.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default connect()(Login);

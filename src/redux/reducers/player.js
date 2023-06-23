@@ -1,4 +1,4 @@
-import { SAVE_EMAIL, SAVE_NAME, SAVE_SCORE } from '../actions';
+import { SAVE_EMAIL, SAVE_NAME, SAVE_SCORE } from '../actions/actionsName';
 
 const INITIAL_STATE = {
   name: '',
