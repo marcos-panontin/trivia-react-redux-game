@@ -7,14 +7,18 @@ import GameSection from '../components/GameSection';
 
 class Game extends Component {
   state = {
-    results: [],
+    results: [{ correct_answer: '', incorrect_answers: [], category: '', question: '' }],
     index: 0,
+    loading: false,
   };
 
   async componentDidMount() {
     const { history } = this.props;
+    this.setState({
+      loading: true,
+    });
     const results = await getQuestions();
-    this.setState({ results: results.results });
+    this.setState({ results: results.results, loading: false });
     const magicNum = 3;
     if (results.response_code === magicNum) {
       localStorage.removeItem('token');
@@ -35,11 +39,11 @@ class Game extends Component {
   };
 
   render() {
-    const { results, index } = this.state;
+    const { results, index, loading } = this.state;
     return (
       <>
         <Header />
-        <GameSection questionInfo={ results[index] } />
+        { !loading && <GameSection questionInfo={ results[index] } /> }
         <button onClick={ this.handleClick }>Next</button>
       </>
     );
