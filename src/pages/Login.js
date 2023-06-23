@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getToken } from '../services/api';
+import { saveEmail, saveName } from '../redux/actions';
 
 class Login extends Component {
   state = {
@@ -9,8 +10,12 @@ class Login extends Component {
     disabled: true,
   };
 
-  handleClick = async (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
+    const { email, username } = this.state;
+    const { dispatch } = this.props;
+    dispatch(saveEmail(email));
+    dispatch(saveName(username));
     const { token } = await getToken();
     localStorage.setItem('token', token);
     const { history } = this.props;
@@ -36,7 +41,9 @@ class Login extends Component {
     return (
       <>
         <h1>Login</h1>
-        <form>
+        <form
+          onSubmit={ this.handleSubmit }
+        >
           <input
             name="username"
             value={ username }
@@ -55,12 +62,14 @@ class Login extends Component {
           />
           <input
             type="submit"
-            onClick={ this.handleClick }
             disabled={ disabled }
             value="Play"
             data-testid="btn-play"
           />
         </form>
+        <button data-testeid="btn-settings">
+          Configurações
+        </button>
       </>
     );
   }
@@ -70,6 +79,7 @@ Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default Login;
