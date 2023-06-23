@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { getQuestions } from '../services/api';
 import GameSection from '../components/GameSection';
+import { pushAnswersToGlobalState, generateRandomIndex } from '../redux/actions';
 
 class Game extends Component {
   state = {
@@ -13,12 +14,15 @@ class Game extends Component {
   };
 
   async componentDidMount() {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    const { index } = this.state;
     this.setState({
       loading: true,
     });
     const results = await getQuestions();
     this.setState({ results: results.results, loading: false });
+    dispatch(pushAnswersToGlobalState(results.results[index]));
+    dispatch(generateRandomIndex());
     const magicNum = 3;
     if (results.response_code === magicNum) {
       localStorage.removeItem('token');
@@ -28,10 +32,11 @@ class Game extends Component {
 
   handleClick = () => {
     const { results, index } = this.state;
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
     if (index === results.length - 1) {
       history.push('/feedback');
     } else {
+      dispatch(generateRandomIndex());
       this.setState((prevState) => ({
         index: prevState.index + 1,
       }));
@@ -51,6 +56,7 @@ class Game extends Component {
 }
 
 Game.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

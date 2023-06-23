@@ -1,59 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { shuffleArray } from '../services/shuffleArray';
+import { connect } from 'react-redux';
 
 class GameSection extends Component {
   state = {
-    correctAnswerIndex: '',
     buttonClicked: false,
-    shuffledAnswers: [],
   };
-
-  componentDidMount() {
-    const { questionInfo } = this.props;
-    const
-      {
-        correct_answer: correctAnswer,
-        incorrect_answers: incorrectAnswers,
-      } = questionInfo;
-
-    const allAnswers = [correctAnswer, ...incorrectAnswers];
-
-    this.setState({
-      correctAnswerIndex: Math.floor(Math.random() * allAnswers.length) + 1,
-    });
-  }
-  // componentDidMount() {
-  //   const { questionInfo } = this.props;
-  //   const
-  //     {
-  //       correct_answer: correctAnswer,
-  //       incorrect_answers: incorrectAnswers,
-  //     } = questionInfo;
-
-  //   const allAnswers = [correctAnswer, ...incorrectAnswers];
-  //   const shuffledAnswers = shuffleArray(allAnswers);
-
-  //   this.setState({
-  //     shuffledAnswers,
-  //   });
-  // }
-
-  // componentDidUpdate() {
-  //   const { questionInfo } = this.props;
-  //   const
-  //     {
-  //       correct_answer: correctAnswer,
-  //       incorrect_answers: incorrectAnswers,
-  //     } = questionInfo;
-
-  //   const allAnswers = [correctAnswer, ...incorrectAnswers];
-  //   const shuffledAnswers = shuffleArray(allAnswers);
-
-  //   this.setState({
-  //     shuffledAnswers,
-  //   });
-  // }
 
   handleClick = () => {
     this.setState({
@@ -62,7 +14,8 @@ class GameSection extends Component {
   };
 
   render() {
-    const { questionInfo } = this.props;
+    const { questionInfo, correctAnswerIndex } = this.props;
+    const { buttonClicked } = this.state;
     const
       {
         correct_answer: correctAnswer,
@@ -70,8 +23,6 @@ class GameSection extends Component {
       } = questionInfo;
 
     const allAnswers = [correctAnswer, ...incorrectAnswers];
-
-    const { correctAnswerIndex } = this.state;
 
     return (
       <>
@@ -86,8 +37,8 @@ class GameSection extends Component {
               ? (
                 <button
                   // style={ buttonClicked ? { border: '3px solid red ' } : { border: '1px solid black ' } }
-                  // style={ buttonClicked ? { border: '3px solid red ' } : null }
-                  style={ { order: index, border: '3px solid red' } }
+                  className={ buttonClicked ? 'red' : null }
+                  style={ { order: index } }
                   key={ index }
                   data-testid={ `wrong-answer-${incorrectAnswers.indexOf(answer)}` }
                   type="button"
@@ -100,6 +51,7 @@ class GameSection extends Component {
                 <button
                   // style={ buttonClicked && { border: '3px solid rgb(6, 240, 15)' } }
                   style={ { order: correctAnswerIndex } }
+                  className={ buttonClicked ? 'green' : null }
                   key={ index }
                   data-testid="correct-answer"
                   type="button"
@@ -116,6 +68,7 @@ class GameSection extends Component {
 }
 
 GameSection.propTypes = {
+  correctAnswerIndex: PropTypes.number.isRequired,
   questionInfo: PropTypes.shape({
     category: PropTypes.string.isRequired,
     question: PropTypes.string.isRequired,
@@ -124,4 +77,8 @@ GameSection.propTypes = {
   }).isRequired,
 };
 
-export default GameSection;
+const mapStateToProps = (globalState) => ({
+  correctAnswerIndex: globalState.player.correctAnswerIndex,
+});
+
+export default connect(mapStateToProps)(GameSection);

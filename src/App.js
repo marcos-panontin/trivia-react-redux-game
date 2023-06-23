@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Feedback from './pages/Feedback';
 import Ranking from './pages/Ranking';
 import Settings from './pages/Settings';
+import './App.css';
 
 function App() {
   return (
