@@ -1,6 +1,6 @@
 import {
   GENERATE_RANDOM_INDEX, PUSH_ANSWERS_TO_GLOBAL_STATE,
-  SAVE_EMAIL, SAVE_NAME, SAVE_SCORE,
+  SAVE_EMAIL, SAVE_NAME, SAVE_SCORE, STOP_TIMER, RESTART_TIMER, DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS,
 }
   from '../actions/actionsName';
 
@@ -11,10 +11,11 @@ const INITIAL_STATE = {
   gravatarEmail: '',
   correctAnswerIndex: 0,
   allAnswersLength: 0,
+  clearTimer: false,
+  disableAlternativesButtons: false,
 };
 
 const player = (state = INITIAL_STATE, action) => {
-  console.log(action.payload);
   switch (action.type) {
   case SAVE_NAME:
     return {
@@ -41,6 +42,26 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       allAnswersLength: action.payload && action.payload.incorrect_answers.length + 1,
+    };
+  case STOP_TIMER:
+    return {
+      ...state,
+      clearTimer: true,
+    };
+  case RESTART_TIMER:
+    return {
+      ...state,
+      clearTimer: false,
+    };
+  case DISABLE_ALTERNATIVES_BUTTONS:
+    return {
+      ...state,
+      disableAlternativesButtons: true,
+    };
+  case ENABLE_ALTERNATIVES_BUTTONS:
+    return {
+      ...state,
+      disableAlternativesButtons: false,
     };
   default:
     return state;

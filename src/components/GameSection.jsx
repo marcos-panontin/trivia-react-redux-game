@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { shuffleArray } from '../services/shuffleArray';
+import { stopTimer } from '../redux/actions';
 
 class GameSection extends Component {
   state = {
@@ -43,22 +44,21 @@ class GameSection extends Component {
   }
 
   handleClick = () => {
+    const { dispatch } = this.props;
     this.setState({
       buttonClicked: true,
     });
+    dispatch(stopTimer());
   };
 
   render() {
-    const { buttonClicked, shuffledAnswers } = this.state;
+    const { buttonClicked, shuffledAnswers, seconds } = this.state;
 
-    const { questionInfo } = this.props;
-    // const { buttonClicked } = this.state;
+    const { questionInfo, disableAlternativesButtons } = this.props;
     const
       {
         incorrect_answers: incorrectAnswers,
       } = questionInfo;
-
-    // const allAnswers = [correctAnswer, ...incorrectAnswers];
 
     return (
       <>
@@ -72,6 +72,7 @@ class GameSection extends Component {
             incorrectAnswers.includes(answer)
               ? (
                 <button
+                  disabled={ disableAlternativesButtons }
                   className={ buttonClicked ? 'red' : null }
                   // style={ { order: incorrectAnswers.indexOf(answer) } }
                   key={ index }
@@ -84,6 +85,7 @@ class GameSection extends Component {
               )
               : (
                 <button
+                  disabled={ disableAlternativesButtons }
                   // style={ { order: correctAnswerIndex } }
                   className={ buttonClicked ? 'green' : null }
                   key={ index }
@@ -112,7 +114,7 @@ GameSection.propTypes = {
 };
 
 const mapStateToProps = (globalState) => ({
-  correctAnswerIndex: globalState.player.correctAnswerIndex,
+  disableAlternativesButtons: globalState.player.disableAlternativesButtons,
 });
 
 export default connect(mapStateToProps)(GameSection);

@@ -1,6 +1,6 @@
 import {
   SAVE_EMAIL, SAVE_NAME, SAVE_SCORE, GENERATE_RANDOM_INDEX,
-  PUSH_ANSWERS_TO_GLOBAL_STATE,
+  PUSH_ANSWERS_TO_GLOBAL_STATE, STOP_TIMER, RESTART_TIMER, DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS
 } from './actionsName';
 
 export const saveEmail = (email) => ({
@@ -26,4 +26,20 @@ export const generateRandomIndex = () => ({
 export const pushAnswersToGlobalState = (results) => ({
   type: PUSH_ANSWERS_TO_GLOBAL_STATE,
   payload: results,
+});
+
+export const stopTimer = () => ({
+  type: STOP_TIMER,
+});
+
+export const restartTimer = () => ({
+  type: RESTART_TIMER,
+});
+
+export const disableAlternativesButtons = () => ({
+  type: DISABLE_ALTERNATIVES_BUTTONS,
+});
+
+export const enableAlternativesButtons = () => ({
+  type: ENABLE_ALTERNATIVES_BUTTONS,
 });
