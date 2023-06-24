@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { shuffleArray } from '../services/shuffleArray';
-import { stopTimer } from '../redux/actions';
+import { stopTimer, disableAlternativesButtons } from '../redux/actions';
 
 class GameSection extends Component {
   state = {
@@ -43,12 +43,16 @@ class GameSection extends Component {
     }
   }
 
-  handleClick = () => {
+  handleClick = ({ target }) => {
     const { dispatch } = this.props;
+    if (target.dataset.testid === 'correct-answer') {
+      console.log('correto');
+    }
     this.setState({
       buttonClicked: true,
     });
     dispatch(stopTimer());
+    dispatch(disableAlternativesButtons());
   };
 
   render() {
