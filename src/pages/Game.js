@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { getQuestions } from '../services/api';
 import GameSection from '../components/GameSection';
-import { pushAnswersToGlobalState, generateRandomIndex, restartTimer, disableAlternativesButtons, enableAlternativesButtons } from '../redux/actions';
+import {
+  restartTimer,
+  disableAlternativesButtons, enableAlternativesButtons,
+} from '../redux/actions';
 
 class Game extends Component {
   state = {
@@ -15,8 +18,7 @@ class Game extends Component {
   };
 
   async componentDidMount() {
-    const { history, dispatch } = this.props;
-    const { index } = this.state;
+    const { history } = this.props;
     this.setState({
       loading: true,
     });
@@ -76,7 +78,6 @@ class Game extends Component {
     if (index === results.length - 1) {
       history.push('/feedback');
     } else {
-      dispatch(generateRandomIndex());
       this.setState((prevState) => ({
         index: prevState.index + 1,
       }));
@@ -101,6 +102,7 @@ class Game extends Component {
 
 Game.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  clearTimer: PropTypes.bool.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

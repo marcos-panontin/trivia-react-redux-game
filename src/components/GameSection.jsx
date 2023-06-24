@@ -52,7 +52,7 @@ class GameSection extends Component {
   };
 
   render() {
-    const { buttonClicked, shuffledAnswers, seconds } = this.state;
+    const { buttonClicked, shuffledAnswers } = this.state;
 
     const { questionInfo, disableAlternativesButtons } = this.props;
     const
@@ -104,7 +104,8 @@ class GameSection extends Component {
 }
 
 GameSection.propTypes = {
-  // correctAnswerIndex: PropTypes.number.isRequired,
+  disableAlternativesButtons: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
   questionInfo: PropTypes.shape({
     category: PropTypes.string.isRequired,
     question: PropTypes.string.isRequired,
