@@ -69,5 +69,19 @@ describe('Testes do arquivo Feedback.js', () => {
     const textFeedback = screen.getByTestId('feedback-text');
     expect(textFeedback.innerHTML).toBe("Could be better...");
   });
+  it('Check if the text is correct', async () => {
+    const { history } = renderWithRouterAndRedux(<App />);
+    act(() => {
+        history.push('/feedback');
+    })
+    const textFeedback = screen.getByTestId('feedback-text');
+    const assertions = 5;
+    const minimumAssertions = 1;
+
+    const message = assertions < minimumAssertions ? 'Well Done!' : 'Could be better...';
+
+    expect(textFeedback.innerHTML).toBe(message);
+    expect(textFeedback.innerHTML).not.toBe('Well Done!');
+  });
 
 });
