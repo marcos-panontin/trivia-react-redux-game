@@ -7,6 +7,7 @@ class Feedback extends Component {
   render() {
     const { score, name, email, assertions, history } = this.props;
     const minimumAssertions = 3;
+    console.log(assertions);
     return (
       <>
 
@@ -22,7 +23,7 @@ class Feedback extends Component {
         <p
           data-testid="feedback-text"
         >
-          {assertions <= minimumAssertions ? 'Could be better...' : 'Well Done!'}
+          {assertions < minimumAssertions ? 'Could be better...' : 'Well Done!'}
 
         </p>
 
