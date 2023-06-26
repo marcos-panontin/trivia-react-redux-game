@@ -5,7 +5,7 @@ import { generateGravatarURL } from '../services/gravatarFunctions';
 
 class Ranking extends Component {
   render() {
-    const { score, name, history, email } = this.props;
+    const { score, name, history, email, dispatch } = this.props;
     const playersRanked = localStorage.getItem('players Ranking');
     console.log(playersRanked);
     return (
@@ -29,7 +29,10 @@ class Ranking extends Component {
         </div>
         <button
           data-testid="btn-go-home"
-          onClick={ () => history.push('/') }
+          onClick={ () => {
+            dispatch(resetScore());
+            history.push('/');
+          } }
         >
           Go Home
         </button>
