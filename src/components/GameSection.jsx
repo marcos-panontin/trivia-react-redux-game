@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { shuffleArray } from '../services/shuffleArray';
-import { stopTimer, disableAlternatives } from '../redux/actions';
+import { stopTimer, disableAlternatives, incrementScore } from '../redux/actions';
 
 class GameSection extends Component {
   state = {
@@ -44,9 +44,17 @@ class GameSection extends Component {
   }
 
   handleClick = ({ target }) => {
-    const { dispatch } = this.props;
+    const { dispatch, seconds, questionInfo } = this.props;
     if (target.dataset.testid === 'correct-answer') {
-      console.log('correto');
+      const difficultyEquivalence = {
+        easy: 1,
+        medium: 2,
+        hard: 3,
+      };
+      const minScore = 10;
+      const score = minScore + (seconds * difficultyEquivalence[questionInfo.difficulty]);
+      console.log(score);
+      dispatch(incrementScore(score));
     }
     this.setState({
       buttonClicked: true,
@@ -109,8 +117,10 @@ class GameSection extends Component {
 
 GameSection.propTypes = {
   disableAlternativesButtons: PropTypes.bool.isRequired,
+  seconds: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
   questionInfo: PropTypes.shape({
+    difficulty: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     question: PropTypes.string.isRequired,
     correct_answer: PropTypes.string.isRequired,

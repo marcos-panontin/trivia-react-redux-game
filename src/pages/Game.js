@@ -11,7 +11,12 @@ import {
 
 class Game extends Component {
   state = {
-    results: [{ correct_answer: '', incorrect_answers: [], category: '', question: '' }],
+    results: [{
+      correct_answer: '',
+      incorrect_answers: [],
+      category: '',
+      question: '',
+      difficulty: '' }],
     index: 0,
     loading: false,
     seconds: 30,
@@ -92,7 +97,10 @@ class Game extends Component {
     return (
       <>
         <Header />
-        { !loading && <GameSection questionInfo={ results[index] } /> }
+        { !loading && <GameSection
+          questionInfo={ results[index] }
+          seconds={ seconds }
+        /> }
         <button onClick={ this.handleClick }>Next</button>
         <p>{seconds}</p>
       </>

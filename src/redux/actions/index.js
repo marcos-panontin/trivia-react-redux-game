@@ -1,7 +1,7 @@
 import {
   SAVE_EMAIL, SAVE_NAME, SAVE_SCORE, GENERATE_RANDOM_INDEX,
   PUSH_ANSWERS_TO_GLOBAL_STATE, STOP_TIMER, RESTART_TIMER,
-  DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS,
+  DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS, INCREMENT_SCORE,
 } from './actionsName';
 
 export const saveEmail = (email) => ({
@@ -43,4 +43,9 @@ export const disableAlternatives = () => ({
 
 export const enableAlternativesButtons = () => ({
   type: ENABLE_ALTERNATIVES_BUTTONS,
+});
+
+export const incrementScore = (score) => ({
+  type: INCREMENT_SCORE,
+  payload: score,
 });
