@@ -34,11 +34,6 @@ const player = (state = INITIAL_STATE, action) => {
       score: action.score,
       assertions: action.assertions,
     };
-  // case PUSH_ANSWERS_TO_GLOBAL_STATE:
-  //   return {
-  //     ...state,
-  //     allAnswersLength: action.payload && action.payload.incorrect_answers.length + 1,
-  //   };
   case STOP_TIMER:
     return {
       ...state,
