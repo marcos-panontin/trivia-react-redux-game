@@ -1,7 +1,6 @@
 import {
-  GENERATE_RANDOM_INDEX, PUSH_ANSWERS_TO_GLOBAL_STATE,
   SAVE_EMAIL, SAVE_NAME, SAVE_SCORE, STOP_TIMER, RESTART_TIMER,
-  DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS,
+  DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS, INCREMENT_SCORE,
 }
   from '../actions/actionsName';
 
@@ -34,16 +33,6 @@ const player = (state = INITIAL_STATE, action) => {
       score: action.score,
       assertions: action.assertions,
     };
-  case GENERATE_RANDOM_INDEX:
-    return {
-      ...state,
-      correctAnswerIndex: Math.floor(Math.random() * state.allAnswersLength) + 1,
-    };
-  case PUSH_ANSWERS_TO_GLOBAL_STATE:
-    return {
-      ...state,
-      allAnswersLength: action.payload && action.payload.incorrect_answers.length + 1,
-    };
   case STOP_TIMER:
     return {
       ...state,
@@ -63,6 +52,12 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       disableAlternativesButtons: false,
+    };
+  case INCREMENT_SCORE:
+    return {
+      ...state,
+      score: state.score + action.payload,
+      assertions: state.assertions + 1,
     };
   default:
     return state;

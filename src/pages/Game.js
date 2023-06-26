@@ -11,7 +11,12 @@ import {
 
 class Game extends Component {
   state = {
-    results: [{ correct_answer: '', incorrect_answers: [], category: '', question: '' }],
+    results: [{
+      correct_answer: '',
+      incorrect_answers: [],
+      category: '',
+      question: '',
+      difficulty: '' }],
     index: 0,
     loading: false,
     seconds: 30,
@@ -89,11 +94,22 @@ class Game extends Component {
 
   render() {
     const { results, index, loading, seconds } = this.state;
+    const { clearTimer } = this.props;
     return (
       <>
         <Header />
-        { !loading && <GameSection questionInfo={ results[index] } /> }
-        <button onClick={ this.handleClick }>Next</button>
+        { !loading && <GameSection
+          questionInfo={ results[index] }
+          seconds={ seconds }
+        />}
+        {(clearTimer || seconds === 0) && (
+          <button
+            data-testid="btn-next"
+            onClick={ this.handleClick }
+          >
+            Next
+          </button>
+        )}
         <p>{seconds}</p>
       </>
     );

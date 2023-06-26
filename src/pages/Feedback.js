@@ -26,8 +26,16 @@ class Feedback extends Component {
 
         </p>
 
-        <span data-testid="feedback-total-score">{score}</span>
-        <span data-testid="feedback-total-question">{assertions}</span>
+        <p>
+          Score:
+          {' '}
+          <span data-testid="feedback-total-score">{score}</span>
+        </p>
+        <p>
+          Acertos:
+          {' '}
+          <span data-testid="feedback-total-question">{assertions}</span>
+        </p>
 
         <button
           data-testid="btn-play-again"
