@@ -2,30 +2,34 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { generateGravatarURL } from '../services/gravatarFunctions';
+import { resetScore } from '../redux/actions';
 
 class Ranking extends Component {
   render() {
-    const { score, name, history, email, dispatch } = this.props;
-    const playersRanked = localStorage.getItem('players Ranking');
-    console.log(playersRanked);
+    const { history, dispatch } = this.props;
+    const playersRanked = JSON.parse(localStorage.getItem('players Ranking'));
+    playersRanked.sort((a, b) => b.score - a.score);
+
     return (
       <div>
         <h2 data-testid="ranking-title">Ranking</h2>
         <div>
-          <img
-            alt="Player Avatar"
-            src={ generateGravatarURL(email) }
-          />
-          <h4 data-testid="player-name">
-            Player Name:
-            {' '}
-            {name}
-          </h4>
-          <h4 data-testid="player-score">
-            Player Score:
-            {' '}
-            {score}
-          </h4>
+          {playersRanked.map((player, index) => (
+            <div key={ index }>
+              <img
+                alt="Player Avatar"
+                src={ generateGravatarURL(player.email) }
+              />
+              <h4 data-testid={ `player-name-${index}` }>
+                {player.name}
+              </h4>
+              <h4>
+                Player Score:
+                <span data-testid={ `player-score-${index}` }>
+                  {player.score}
+                </span>
+              </h4>
+            </div>))}
         </div>
         <button
           data-testid="btn-go-home"
@@ -52,9 +56,7 @@ Ranking.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-  score: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Ranking);
