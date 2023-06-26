@@ -110,7 +110,7 @@ class Game extends Component {
             Next
           </button>
         )}
-        <p>{seconds}</p>
+        <p data-testid="timer">{seconds}</p>
       </>
     );
   }
