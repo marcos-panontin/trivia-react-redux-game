@@ -6,6 +6,8 @@ import { generateGravatarURL } from '../services/gravatarFunctions';
 class Ranking extends Component {
   render() {
     const { score, name, history, email } = this.props;
+    const playersRanked = localStorage.getItem('players Ranking');
+    console.log(playersRanked);
     return (
       <div>
         <h2 data-testid="ranking-title">Ranking</h2>

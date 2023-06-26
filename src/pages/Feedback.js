@@ -5,6 +5,13 @@ import { generateGravatarURL } from '../services/gravatarFunctions';
 import { resetScore } from '../redux/actions';
 
 class Feedback extends Component {
+  componentDidMount() {
+    const { score, name, email } = this.props;
+    const playersRank = JSON.parse(localStorage.getItem('players Ranking')) || [];
+    const buildRank = [...playersRank, { score, name, email }];
+    localStorage.setItem('players Ranking', JSON.stringify(buildRank));
+  }
+
   render() {
     const { score, name, email, assertions, history, dispatch } = this.props;
     const minimumAssertions = 3;
