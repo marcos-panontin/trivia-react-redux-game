@@ -37,7 +37,7 @@ export const restartTimer = () => ({
   type: RESTART_TIMER,
 });
 
-export const disableAlternativesButtons = () => ({
+export const disableAlternatives = () => ({
   type: DISABLE_ALTERNATIVES_BUTTONS,
 });
 

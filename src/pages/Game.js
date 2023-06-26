@@ -6,7 +6,7 @@ import { getQuestions } from '../services/api';
 import GameSection from '../components/GameSection';
 import {
   restartTimer,
-  disableAlternativesButtons, enableAlternativesButtons,
+  disableAlternatives, enableAlternativesButtons,
 } from '../redux/actions';
 
 class Game extends Component {
@@ -57,7 +57,7 @@ class Game extends Component {
         });
       } else {
         clearInterval(this.timer);
-        dispatch(disableAlternativesButtons());
+        dispatch(disableAlternatives());
       }
     }, second);
   };

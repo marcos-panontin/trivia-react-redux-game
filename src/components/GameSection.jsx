@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { shuffleArray } from '../services/shuffleArray';
-import { stopTimer, disableAlternativesButtons } from '../redux/actions';
+import { stopTimer, disableAlternatives } from '../redux/actions';
 
 class GameSection extends Component {
   state = {
@@ -52,7 +52,7 @@ class GameSection extends Component {
       buttonClicked: true,
     });
     dispatch(stopTimer());
-    dispatch(disableAlternativesButtons());
+    dispatch(disableAlternatives());
   };
 
   render() {
