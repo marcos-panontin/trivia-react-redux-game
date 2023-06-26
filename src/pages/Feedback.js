@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { generateGravatarURL } from '../services/gravatarFunctions';
+import { resetScore } from '../redux/actions';
 
 class Feedback extends Component {
   render() {
-    const { score, name, email, assertions, history } = this.props;
+    const { score, name, email, assertions, history, dispatch } = this.props;
     const minimumAssertions = 3;
     return (
       <>
@@ -39,7 +40,10 @@ class Feedback extends Component {
 
         <button
           data-testid="btn-play-again"
-          onClick={ () => { history.push('/'); } }
+          onClick={ () => {
+            dispatch(resetScore());
+            history.push('/');
+          } }
         >
           Play Again!
 
