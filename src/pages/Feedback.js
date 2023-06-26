@@ -22,7 +22,7 @@ class Feedback extends Component {
         <p
           data-testid="feedback-text"
         >
-          {assertions < minimumAssertions ? 'Could be better...' : 'Well Done!'}
+          {assertions <= minimumAssertions ? 'Could be better...' : 'Well Done!'}
 
         </p>
 

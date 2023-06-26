@@ -86,7 +86,6 @@ class GameSection extends Component {
                 <button
                   disabled={ disableAlternativesButtons }
                   className={ buttonClicked ? 'red' : null }
-                  // style={ { order: incorrectAnswers.indexOf(answer) } }
                   key={ index }
                   data-testid={ `wrong-answer-${incorrectAnswers.indexOf(answer)}` }
                   type="button"
@@ -98,7 +97,6 @@ class GameSection extends Component {
               : (
                 <button
                   disabled={ disableAlternativesButtons }
-                  // style={ { order: correctAnswerIndex } }
                   className={ buttonClicked ? 'green' : null }
                   key={ index }
                   data-testid="correct-answer"

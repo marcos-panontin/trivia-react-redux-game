@@ -94,14 +94,22 @@ class Game extends Component {
 
   render() {
     const { results, index, loading, seconds } = this.state;
+    const { clearTimer } = this.props;
     return (
       <>
         <Header />
         { !loading && <GameSection
           questionInfo={ results[index] }
           seconds={ seconds }
-        /> }
-        <button onClick={ this.handleClick }>Next</button>
+        />}
+        {(clearTimer || seconds === 0) && (
+          <button
+            data-testid="btn-next"
+            onClick={ this.handleClick }
+          >
+            Next
+          </button>
+        )}
         <p>{seconds}</p>
       </>
     );
