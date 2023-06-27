@@ -7,7 +7,7 @@ import { resetScore } from '../redux/actions';
 class Ranking extends Component {
   render() {
     const { history, dispatch } = this.props;
-    const playersRanked = JSON.parse(localStorage.getItem('players Ranking'));
+    const playersRanked = JSON.parse(localStorage.getItem('players Ranking')) || [];
     playersRanked.sort((a, b) => b.score - a.score);
 
     return (
