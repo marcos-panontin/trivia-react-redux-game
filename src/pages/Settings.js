@@ -55,7 +55,11 @@ class Settings extends Component {
 
   render() {
     const { categories, categoryId, difficulty, type, quantity } = this.state;
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const numbers = [];
+    const maxNumber = 10;
+    for (let index = 1; index <= maxNumber; index += 1) {
+      numbers.push(index);
+    }
 
     return (
       <form onSubmit={ this.handleSubmit }>
