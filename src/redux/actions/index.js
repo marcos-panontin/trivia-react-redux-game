@@ -1,7 +1,8 @@
 import {
   SAVE_EMAIL, SAVE_NAME, SAVE_SCORE, GENERATE_RANDOM_INDEX,
   PUSH_ANSWERS_TO_GLOBAL_STATE, STOP_TIMER, RESTART_TIMER,
-  DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS, INCREMENT_SCORE, RESET_SCORE
+  DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS,
+  INCREMENT_SCORE, RESET_SCORE, UPDATE_SETTINGS,
 } from './actionsName';
 
 export const saveEmail = (email) => ({
@@ -52,4 +53,9 @@ export const incrementScore = (score) => ({
 
 export const resetScore = () => ({
   type: RESET_SCORE,
+});
+
+export const updateSettings = (settings) => ({
+  type: UPDATE_SETTINGS,
+  payload: settings,
 });

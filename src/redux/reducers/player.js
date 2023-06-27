@@ -1,6 +1,6 @@
 import {
   SAVE_EMAIL, SAVE_NAME, SAVE_SCORE, STOP_TIMER, RESTART_TIMER,
-  DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS, INCREMENT_SCORE, RESET_SCORE,
+  DISABLE_ALTERNATIVES_BUTTONS, ENABLE_ALTERNATIVES_BUTTONS, INCREMENT_SCORE, RESET_SCORE, UPDATE_SETTINGS,
 }
   from '../actions/actionsName';
 
@@ -11,6 +11,10 @@ const INITIAL_STATE = {
   gravatarEmail: '',
   clearTimer: false,
   disableAlternativesButtons: false,
+  categoryId: '',
+  difficulty: '',
+  type: '',
+  quantity: 5,
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -33,23 +37,19 @@ const player = (state = INITIAL_STATE, action) => {
     };
   case STOP_TIMER:
     return {
-      ...state,
-      clearTimer: true,
+      ...state, clearTimer: true,
     };
   case RESTART_TIMER:
     return {
-      ...state,
-      clearTimer: false,
+      ...state, clearTimer: false,
     };
   case DISABLE_ALTERNATIVES_BUTTONS:
     return {
-      ...state,
-      disableAlternativesButtons: true,
+      ...state, disableAlternativesButtons: true,
     };
   case ENABLE_ALTERNATIVES_BUTTONS:
     return {
-      ...state,
-      disableAlternativesButtons: false,
+      ...state, disableAlternativesButtons: false,
     };
   case INCREMENT_SCORE:
     return {
@@ -58,7 +58,7 @@ const player = (state = INITIAL_STATE, action) => {
       assertions: state.assertions + 1,
     };
   case RESET_SCORE:
-    return { assertions: 0, score: 0 };
+    return { ...state, assertions: 0, score: 0 };
   default:
     return state;
   }

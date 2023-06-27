@@ -23,11 +23,11 @@ class Game extends Component {
   };
 
   async componentDidMount() {
-    const { history } = this.props;
+    const { history, quantity, type, difficulty, categoryId } = this.props;
     this.setState({
       loading: true,
     });
-    const results = await getQuestions();
+    const results = await getQuestions(quantity, type, difficulty, categoryId);
     this.setState({ results: results.results, loading: false });
 
     const magicNum = 3;
@@ -107,7 +107,7 @@ class Game extends Component {
             data-testid="btn-next"
             onClick={ this.handleClick }
           >
-            Next
+            {seconds === 0 ? 'Time is over. Next question >' : 'Next' }
           </button>
         )}
         <p data-testid="timer">{seconds}</p>
@@ -124,8 +124,12 @@ Game.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = ({ player }) => ({
+const mapStateToProps = ({ player, settings }) => ({
   clearTimer: player.clearTimer,
+  categoryId: settings.categoryId,
+  difficulty: settings.difficulty,
+  type: settings.type,
+  quantity: settings.quantity,
 });
 
 export default connect(mapStateToProps)(Game);

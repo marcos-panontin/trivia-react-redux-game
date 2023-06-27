@@ -13,7 +13,7 @@ class Feedback extends Component {
   }
 
   render() {
-    const { score, name, email, assertions, history, dispatch } = this.props;
+    const { score, name, email, assertions, history, dispatch, quantity } = this.props;
     const minimumAssertions = 3;
     return (
       <>
@@ -40,9 +40,15 @@ class Feedback extends Component {
           <span data-testid="feedback-total-score">{score}</span>
         </p>
         <p>
-          Acertos:
+          Correct Answers:
           {' '}
           <span data-testid="feedback-total-question">{assertions}</span>
+          <span>
+            {' '}
+            /
+            {' '}
+            {quantity}
+          </span>
         </p>
 
         <button
@@ -80,11 +86,12 @@ Feedback.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ player }) => ({
+const mapStateToProps = ({ player, settings }) => ({
   score: player.score,
   assertions: player.assertions,
   name: player.name,
   email: player.gravatarEmail,
+  quantity: settings.quantity,
 });
 
 export default connect(mapStateToProps)(Feedback);
