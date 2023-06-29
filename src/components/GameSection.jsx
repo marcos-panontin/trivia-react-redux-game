@@ -73,19 +73,33 @@ class GameSection extends Component {
       } = questionInfo;
 
     return (
-      <>
-        <h2 data-testid="question-category">{questionInfo.category}</h2>
-        <p data-testid="question-text">{questionInfo.question}</p>
+      <section className="question-container">
+        <div className="question-category-container">
+          <h2
+            className="category-container"
+            data-testid="question-category"
+          >
+            {questionInfo.category}
+
+          </h2>
+          <p
+            className="question-container"
+            data-testid="question-text"
+          >
+            {questionInfo.question}
+          </p>
+
+        </div>
         <div
+          className="answers-container"
           data-testid="answer-options"
-          style={ { display: 'grid' } }
         >
           {shuffledAnswers.map((answer, index) => (
             incorrectAnswers.includes(answer)
               ? (
                 <button
                   disabled={ disableAlternativesButtons }
-                  className={ buttonClicked ? 'red' : null }
+                  className={ buttonClicked ? 'red button' : 'button' }
                   key={ index }
                   data-testid={ `wrong-answer-${incorrectAnswers.indexOf(answer)}` }
                   type="button"
@@ -97,7 +111,7 @@ class GameSection extends Component {
               : (
                 <button
                   disabled={ disableAlternativesButtons }
-                  className={ buttonClicked ? 'green' : null }
+                  className={ buttonClicked ? 'green button' : 'button' }
                   key={ index }
                   data-testid="correct-answer"
                   type="button"
@@ -108,7 +122,7 @@ class GameSection extends Component {
               )
           ))}
         </div>
-      </>
+      </section>
     );
   }
 }

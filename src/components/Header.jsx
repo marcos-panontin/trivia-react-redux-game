@@ -7,15 +7,16 @@ class Header extends Component {
   render() {
     const { name, score, gravatarEmail } = this.props;
     return (
-      <div>
+      <header className="header">
         <img
           src={ generateGravatarURL(gravatarEmail) }
           alt="avatar"
           data-testid="header-profile-picture"
+          className="avatar"
         />
         <h3 data-testid="header-player-name">{name}</h3>
-        <h5 data-testid="header-score">{score}</h5>
-      </div>
+        <h5 data-testid="header-score">SCORE: {score}</h5>
+      </header>
     );
   }
 }

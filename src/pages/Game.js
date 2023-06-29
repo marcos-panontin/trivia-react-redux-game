@@ -98,20 +98,25 @@ class Game extends Component {
     return (
       <>
         <Header />
-        { !loading && <GameSection
-          questionInfo={ results[index] }
-          seconds={ seconds }
-        />}
-        {(clearTimer || seconds === 0) && (
-          <button
-            data-testid="btn-next"
-            onClick={ this.handleClick }
-          >
-            {seconds === 0 ? 'Time is over. Next question >' : 'Next' }
-          </button>
-        )}
-        <p data-testid="timer">{seconds}</p>
+        <div className="wrapper">
+
+          { !loading && <GameSection
+            questionInfo={ results[index] }
+            seconds={ seconds }
+          />}
+          {(clearTimer || seconds === 0) && (
+            <button
+              className="button next-button"
+              data-testid="btn-next"
+              onClick={ this.handleClick }
+            >
+              {seconds === 0 ? 'Time is over. Next question >' : 'Next' }
+            </button>
+          )}
+          <p className="timer" data-testid="timer">{seconds}</p>
+        </div>
       </>
+
     );
   }
 }

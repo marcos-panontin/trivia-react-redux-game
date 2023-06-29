@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getToken } from '../services/api';
 import { saveEmail, saveName } from '../redux/actions';
+import configuracao from './images/configuracao.png';
 
 class Login extends Component {
   state = {
@@ -41,12 +42,13 @@ class Login extends Component {
     const { email, username, disabled } = this.state;
     const { history } = this.props;
     return (
-      <>
-        <h1>Login</h1>
+      <section className="login-container">
         <form
+          className="login-form"
           onSubmit={ this.handleSubmit }
         >
           <input
+            className="login-input"
             name="username"
             value={ username }
             onChange={ this.handleChange }
@@ -55,6 +57,7 @@ class Login extends Component {
             data-testid="input-player-name"
           />
           <input
+            className="login-input"
             name="email"
             value={ email }
             onChange={ this.handleChange }
@@ -63,19 +66,22 @@ class Login extends Component {
             data-testid="input-gravatar-email"
           />
           <input
+            className="button play-button"
             type="submit"
             disabled={ disabled }
             value="Play"
             data-testid="btn-play"
           />
+          <button
+            className="button settings-button"
+            data-testid="btn-settings"
+            onClick={ () => history.push('/settings') }
+          >
+            <img src={ configuracao } alt="Settings Icon" className="settings-icon" />
+            Settings
+          </button>
         </form>
-        <button
-          data-testid="btn-settings"
-          onClick={ () => history.push('/settings') }
-        >
-          Configurações
-        </button>
-      </>
+      </section>
     );
   }
 }

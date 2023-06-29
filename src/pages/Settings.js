@@ -50,7 +50,7 @@ class Settings extends Component {
       categoryId, difficulty, type, quantity,
     };
     dispatch(updateSettings(settings));
-    history.push('/game');
+    history.push('/');
   };
 
   render() {
