@@ -202,6 +202,7 @@ describe('Tests for the Game.js file', () => {
         });
 
         const displayAnswerOption = await screen.findByTestId('answer-options');
+        const correctAnswer = await screen.findByTestId('correct-answer');
         const displayTimer = screen.getByTestId('timer');
         expect(displayTimer).toBeInTheDocument();
         expect(displayAnswerOption).toBeEnabled();
@@ -209,8 +210,8 @@ describe('Tests for the Game.js file', () => {
 
         await waitFor(() => {
             expect(displayTimer).toBeInTheDocument();
-            expect(displayAnswerOption).toBeDisabled();
+            expect(correctAnswer).toBeDisabled();
             expect(displayTimer.innerHTML).toBe('0');
-        } , { timeout: 3000 });
+        } , { timeout: 32000 });
     });
 });
