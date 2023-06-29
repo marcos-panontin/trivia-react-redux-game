@@ -6,7 +6,7 @@ import { updateSettings } from '../redux/actions';
 class Settings extends Component {
   state = {
     categories: [],
-    categoryId: -1,
+    categoryId: '',
     difficulty: '',
     type: '',
     quantity: 5,

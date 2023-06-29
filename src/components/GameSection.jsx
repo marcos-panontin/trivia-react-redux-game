@@ -67,6 +67,7 @@ class GameSection extends Component {
     const { buttonClicked, shuffledAnswers } = this.state;
 
     const { questionInfo, disableAlternativesButtons } = this.props;
+    console.log(questionInfo);
     const
       {
         incorrect_answers: incorrectAnswers,
