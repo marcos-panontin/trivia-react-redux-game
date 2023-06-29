@@ -53,7 +53,6 @@ class GameSection extends Component {
       };
       const minScore = 10;
       const score = minScore + (seconds * difficultyEquivalence[questionInfo.difficulty]);
-      console.log(score);
       dispatch(incrementScore(score));
     }
     this.setState({
@@ -67,7 +66,13 @@ class GameSection extends Component {
     const { buttonClicked, shuffledAnswers } = this.state;
 
     const { questionInfo, disableAlternativesButtons } = this.props;
-    console.log(questionInfo);
+    const treatedQuestionInfoQuestion = questionInfo.question.replace(/&quot;|&#039;/g, (match) => {
+      if (match === '&quot;') {
+        return '"';
+      } if (match === '&#039;') {
+        return '\'';
+      }
+    });
     const
       {
         incorrect_answers: incorrectAnswers,
@@ -75,6 +80,7 @@ class GameSection extends Component {
 
     return (
       <section className="question-container">
+
         <div className="question-category-container">
           <h2
             className="category-container"
@@ -87,7 +93,7 @@ class GameSection extends Component {
             className="question-container"
             data-testid="question-text"
           >
-            {questionInfo.question}
+            {treatedQuestionInfoQuestion}
           </p>
 
         </div>
@@ -106,7 +112,13 @@ class GameSection extends Component {
                   type="button"
                   onClick={ this.handleClick }
                 >
-                  {answer}
+                  {answer.replace(/&quot;|&#039;/g, (match) => {
+                    if (match === '&quot;') {
+                      return '"';
+                    } if (match === '&#039;') {
+                      return '\'';
+                    }
+                  })}
                 </button>
               )
               : (
@@ -118,7 +130,13 @@ class GameSection extends Component {
                   type="button"
                   onClick={ this.handleClick }
                 >
-                  {answer}
+                  {answer.replace(/&quot;|&#039;/g, (match) => {
+                    if (match === '&quot;') {
+                      return '"';
+                    } if (match === '&#039;') {
+                      return '\'';
+                    }
+                  })}
                 </button>
               )
           ))}

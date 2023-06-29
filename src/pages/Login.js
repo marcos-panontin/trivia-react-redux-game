@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getToken } from '../services/api';
 import { saveEmail, saveName } from '../redux/actions';
 import configuracao from './images/configuracao.png';
+import logo from './images/logo trivia.png';
 
 class Login extends Component {
   state = {
@@ -43,6 +44,7 @@ class Login extends Component {
     const { history } = this.props;
     return (
       <section className="login-container">
+        <img src={ logo } alt="Page logo" />
         <form
           className="login-form"
           onSubmit={ this.handleSubmit }
@@ -82,6 +84,7 @@ class Login extends Component {
           </button>
         </form>
       </section>
+
     );
   }
 }

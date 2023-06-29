@@ -16,61 +16,66 @@ class Feedback extends Component {
     const { score, name, email, assertions, history, dispatch, quantity } = this.props;
     const minimumAssertions = 3;
     return (
-      <>
+      <section className="feedback-card">
+        <div className="feedback-user-info">
 
-        <p>Feedback</p>
-        <img
-          data-testid="header-profile-picture"
-          alt="Player Avatar"
-          src={ generateGravatarURL(email) }
-        />
-        <p data-testid="header-player-name">{name}</p>
-        <p data-testid="header-score">{score}</p>
+          <img
+            data-testid="header-profile-picture"
+            alt="Player Avatar"
+            src={ generateGravatarURL(email) }
+          />
+          <p data-testid="header-player-name" className="score-text">{name}</p>
+        </div>
 
         <p
           data-testid="feedback-text"
+          className="feedback-text"
         >
           {assertions < minimumAssertions ? 'Could be better...' : 'Well Done!'}
 
         </p>
 
-        <p>
+        <p className="score-text">
           Score:
           {' '}
-          <span data-testid="feedback-total-score">{score}</span>
+          <span data-testid="feedback-total-score" className="score-text-number">{score}</span>
         </p>
-        <p>
+        <p className="score-text">
           Correct Answers:
           {' '}
-          <span data-testid="feedback-total-question">{assertions}</span>
-          <span>
+          <span data-testid="feedback-total-question" className="score-text-number">{assertions}</span>
+          <span className="score-text-number-dark">
             {' '}
             /
             {' '}
             {quantity}
           </span>
         </p>
+        <div className="buttons-container">
 
-        <button
-          data-testid="btn-play-again"
-          onClick={ () => {
-            dispatch(resetScore());
-            history.push('/');
-          } }
-        >
-          Play Again!
+          <button
+            className="button play-button"
+            data-testid="btn-play-again"
+            onClick={ () => {
+              dispatch(resetScore());
+              history.push('/');
+            } }
+          >
+            Play Again!
 
-        </button>
+          </button>
 
-        <button
-          data-testid="btn-ranking"
-          onClick={ () => { history.push('/ranking'); } }
-        >
-          Ranking
+          <button
+            className="button settings-button"
+            data-testid="btn-ranking"
+            onClick={ () => { history.push('/ranking'); } }
+          >
+            Ranking
 
-        </button>
+          </button>
+        </div>
 
-      </>
+      </section>
     );
   }
 }

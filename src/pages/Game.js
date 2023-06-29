@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { clear } from '@testing-library/user-event/dist/clear';
 import Header from '../components/Header';
 import { getQuestions } from '../services/api';
 import GameSection from '../components/GameSection';
@@ -8,6 +9,7 @@ import {
   restartTimer,
   disableAlternatives, enableAlternativesButtons,
 } from '../redux/actions';
+import logo from './images/logo trivia.png';
 
 class Game extends Component {
   state = {
@@ -99,21 +101,32 @@ class Game extends Component {
       <>
         <Header />
         <div className="wrapper">
+          <img src={ logo } alt="Page logo" className="question-logo" />
+          <div>
 
-          { !loading && <GameSection
-            questionInfo={ results[index] }
-            seconds={ seconds }
-          />}
-          {(clearTimer || seconds === 0) && (
-            <button
-              className="button next-button"
-              data-testid="btn-next"
-              onClick={ this.handleClick }
-            >
-              {seconds === 0 ? 'Time is over. Next question >' : 'Next' }
-            </button>
-          )}
-          <p className="timer" data-testid="timer">{seconds}</p>
+            { !loading && <GameSection
+              questionInfo={ results[index] }
+              seconds={ seconds }
+            />}
+            {(clearTimer || seconds === 0) && (
+              <button
+                className="button next-button"
+                data-testid="btn-next"
+                onClick={ this.handleClick }
+              >
+                {seconds === 0 ? 'Time is over - Next question' : 'Next' }
+              </button>
+            )}
+            {(seconds > 0 && !clearTimer && !loading) && (
+              <button
+                className="button next-button timer-button"
+                data-testid="btn-next"
+              >
+                {seconds}
+              </button>
+            )}
+          </div>
+
         </div>
       </>
 

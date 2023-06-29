@@ -9,22 +9,23 @@ class Ranking extends Component {
     const { history, dispatch } = this.props;
     const playersRanked = JSON.parse(localStorage.getItem('players Ranking')) || [];
     playersRanked.sort((a, b) => b.score - a.score);
+    playersRanked.length = 5;
 
     return (
-      <div>
-        <h2 data-testid="ranking-title">Ranking</h2>
+      <div className="ranking-container">
+        <h2 data-testid="ranking-title" className="ranking-title">Ranking</h2>
         <div>
           {playersRanked.map((player, index) => (
-            <div key={ index }>
+            <div className="player-info-container" key={ index }>
               <img
                 alt="Player Avatar"
                 src={ generateGravatarURL(player.email) }
+                className="ranking-avatar"
               />
               <h4 data-testid={ `player-name-${index}` }>
                 {player.name}
               </h4>
               <h4>
-                Player Score:
                 <span data-testid={ `player-score-${index}` }>
                   {player.score}
                 </span>
@@ -32,6 +33,7 @@ class Ranking extends Component {
             </div>))}
         </div>
         <button
+          className="button play-button"
           data-testid="btn-go-home"
           onClick={ () => {
             dispatch(resetScore());
