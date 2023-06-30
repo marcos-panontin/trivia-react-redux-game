@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/trivia-game/static/css/main.bad9e83b.css",
+    "main.js": "/trivia-game/static/js/main.637c7b38.js",
+    "static/media/background.png": "/trivia-game/static/media/background.7678b5f8d44f9d1244c1.png",
+    "static/media/Caveat-VariableFont_wght.ttf": "/trivia-game/static/media/Caveat-VariableFont_wght.834178e16d110b21c85e.ttf",
+    "static/media/Roboto-Regular.ttf": "/trivia-game/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/logo trivia.png": "/trivia-game/static/media/logo trivia.d2702e0c600e4552a235.png",
+    "index.html": "/trivia-game/index.html",
+    "main.bad9e83b.css.map": "/trivia-game/static/css/main.bad9e83b.css.map",
+    "main.637c7b38.js.map": "/trivia-game/static/js/main.637c7b38.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bad9e83b.css",
+    "static/js/main.637c7b38.js"
+  ]
+}
