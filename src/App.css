@@ -313,11 +313,11 @@ header {
 }
 
 fieldset {
-  padding: 16px;
   border: solid 1px #23553f;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  padding: 16px;
 }
 
 fieldset label {
