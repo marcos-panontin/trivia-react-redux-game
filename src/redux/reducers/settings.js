@@ -1,4 +1,4 @@
-import { UPDATE_SETTINGS, } from '../actions/actionsName';
+import { UPDATE_SETTINGS } from '../actions/actionsName';
 
 const INITIAL_STATE = {
   categoryId: '',

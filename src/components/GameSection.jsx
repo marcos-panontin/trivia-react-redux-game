@@ -101,8 +101,16 @@ class GameSection extends Component {
           className="answers-container"
           data-testid="answer-options"
         >
-          {shuffledAnswers.map((answer, index) => (
-            incorrectAnswers.includes(answer)
+          {shuffledAnswers.map((answer, index) => {
+            const treatedAnswer = answer.replace(/&quot;|&#039;/g, (match) => {
+              if (match === '&quot;') {
+                return '"';
+              } if (match === '&#039;') {
+                return '\'';
+              }
+            });
+
+            return incorrectAnswers.includes(answer)
               ? (
                 <button
                   disabled={ disableAlternativesButtons }
@@ -112,13 +120,7 @@ class GameSection extends Component {
                   type="button"
                   onClick={ this.handleClick }
                 >
-                  {answer.replace(/&quot;|&#039;/g, (match) => {
-                    if (match === '&quot;') {
-                      return '"';
-                    } if (match === '&#039;') {
-                      return '\'';
-                    }
-                  })}
+                  {treatedAnswer}
                 </button>
               )
               : (
@@ -130,16 +132,11 @@ class GameSection extends Component {
                   type="button"
                   onClick={ this.handleClick }
                 >
-                  {answer.replace(/&quot;|&#039;/g, (match) => {
-                    if (match === '&quot;') {
-                      return '"';
-                    } if (match === '&#039;') {
-                      return '\'';
-                    }
-                  })}
+                  {treatedAnswer}
+
                 </button>
-              )
-          ))}
+              );
+          })}
         </div>
       </section>
     );

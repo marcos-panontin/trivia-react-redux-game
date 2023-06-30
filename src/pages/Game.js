@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { clear } from '@testing-library/user-event/dist/clear';
 import Header from '../components/Header';
 import { getQuestions } from '../services/api';
 import GameSection from '../components/GameSection';
@@ -140,6 +139,10 @@ Game.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  quantity: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired,
+  categoryId: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ player, settings }) => ({

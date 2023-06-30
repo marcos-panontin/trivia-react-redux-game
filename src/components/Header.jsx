@@ -6,12 +6,8 @@ import { generateGravatarURL } from '../services/gravatarFunctions';
 import house from './images/house.png';
 
 class Header extends Component {
-  handleClick = () => {
-    console.log(this.props);
-  };
-
   render() {
-    const { name, score, gravatarEmail, history } = this.props;
+    const { name, score, gravatarEmail } = this.props;
     return (
       <header className="header">
         <img

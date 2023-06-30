@@ -38,12 +38,24 @@ class Feedback extends Component {
         <p className="score-text">
           Score:
           {' '}
-          <span data-testid="feedback-total-score" className="score-text-number">{score}</span>
+          <span
+            data-testid="feedback-total-score"
+            className="score-text-number"
+          >
+            {score}
+
+          </span>
         </p>
         <p className="score-text">
           Correct Answers:
           {' '}
-          <span data-testid="feedback-total-question" className="score-text-number">{assertions}</span>
+          <span
+            data-testid="feedback-total-question"
+            className="score-text-number"
+          >
+            {assertions}
+
+          </span>
           <span className="score-text-number-dark">
             {' '}
             /
@@ -89,6 +101,7 @@ Feedback.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = ({ player, settings }) => ({

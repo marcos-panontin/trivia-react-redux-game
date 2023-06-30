@@ -130,7 +130,7 @@ class Settings extends Component {
           </label>
 
           <input
-            className='button play-button'
+            className="button play-button"
             type="submit"
             value="Salvar"
           />
