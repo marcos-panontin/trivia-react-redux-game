@@ -1,10 +1,21 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Trivia
+
+## Jogo de perguntas e respostas feito com React, Redux, RTL e React Router DOM
+
+## Deploy
+[Clique aqui para acessar a aplicação](https://travelwallet.vercel.app/carteira).
+
+
+## Preview
+
+<img src="./preview.gif" alt="Imagem da Aplicação funcionando" width="500">
+
+
+TravelWallet é uma Carteira de Gastos Internacionais desenvolvida em React, Redux e Tailwind.
+
+## Tecnologias usadas:
+⚛ React (com 🔀 React Router para as Rotas e 🔬 React Testing Library para os testes)
+
+🌎 Redux (para controlar o estado global)
+
+➡️ Consumo de APIs (para obtenção das perguntas, de acordo com filtros criados pelo usuário)
