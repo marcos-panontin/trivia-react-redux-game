@@ -1,10 +1,11 @@
 {
-  "name": "trivia-react-redux",
+  "name": "trivia",
   "version": "0.1.0",
   "private": true,
   "engines": {
     "node": "16 || 18"
   },
+  "homepage": "https://marcos-panontin.github.io/trivia-react-redux-game",
   "dependencies": {
     "@redux-devtools/extension": "3.2.5",
     "@testing-library/jest-dom": "^5.16.5",
@@ -76,5 +77,4 @@
       "src/tests/helpers/*"
     ]
   },
-  "homepage": "https://username.github.io/trivia-game"
 }
