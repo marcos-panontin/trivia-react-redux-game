@@ -76,5 +76,5 @@
       "src/utils/*",
       "src/tests/helpers/*"
     ]
-  },
+  }
 }
