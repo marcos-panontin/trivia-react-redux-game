@@ -3,7 +3,7 @@
 ## Jogo de perguntas e respostas feito com React, Redux, RTL e React Router DOM
 
 ## Deploy
-[Clique aqui para acessar a aplicação](https://travelwallet.vercel.app/carteira).
+[Clique aqui para acessar a aplicação](https://travelwallet.vercel.app/).
 
 
 ## Preview
